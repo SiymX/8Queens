@@ -9,7 +9,8 @@ The program then prints out one random solution out of the 92 solutions.
 To verify the printed board use the following website: http://www.datagenetics.com/blog/august42012/index.html
 
 # Test cases
-![Screenshot 2023-05-05 165535_1](https://user-images.githubusercontent.com/63435885/236567335-e2d9e674-1c06-44f4-9218-2c69c8a8a9bc.png)
+
+![Screenshot 2023-05-05 165535_1](https://user-images.githubusercontent.com/63435885/236568715-0caea09a-7b17-4624-9f12-811299736124.png)
 
 ![Screenshot 2023-05-05 165414_1](https://user-images.githubusercontent.com/63435885/236567642-a1bdc1fb-9b22-4571-8b9a-bd365af7e344.png)
 
