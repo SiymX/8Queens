@@ -8,6 +8,13 @@ The program then prints out one random solution out of the 92 solutions.
 
 To verify the printed board use the following website: http://www.datagenetics.com/blog/august42012/index.html
 
+# Test cases
+![Screenshot 2023-05-05 165535_1](https://user-images.githubusercontent.com/63435885/236567335-e2d9e674-1c06-44f4-9218-2c69c8a8a9bc.png)
+
+![Screenshot 2023-05-05 165414_1](https://user-images.githubusercontent.com/63435885/236567355-5116f5e4-0297-4948-bbf4-5a3ebb5b1404.png)
+
+
+
 # Compilation
 Make sure you are running it on a working version of ubuntu. To compile it run this command on terminal:
 ```
