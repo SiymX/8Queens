@@ -6,7 +6,9 @@
 #define N 8
 
 int board[N][N];
+int stored_solution[N][N];
 int solutions = 0;
+int chosen_solution = 0;
 
 int isSafe(int row, int col) {
     int i, j;
@@ -36,24 +38,36 @@ void solve(int col) {
     }
 }
 
-void print_board() {
-    printf("There are %d solutions to the 8 Queens Problem on this %dx%d board.\n", solutions, N, N);
-    printf("This is Solution #%d:\n", rand() % solutions + 1);
-    int queen_pos[N];
-    for (int i = 0; i < N; i++) {
-        int pos;
-        do {
-            pos = rand() % N;
-        } while (!isSafe(i, pos));
-        queen_pos[i] = pos;
-    }
-    memset(board, 0, sizeof(board));
-    for (int i = 0; i < N; i++) {
-        board[i][queen_pos[i]] = 1;
-    }
+void store_solution() {
     for (int i = 0; i < N; i++) {
         for (int j = 0; j < N; j++) {
-            if (board[i][j])
+            stored_solution[i][j] = board[i][j];
+        }
+    }
+}
+
+void solve_and_store(int col) {
+    if (col >= N) {
+        if (rand() % (solutions + 1) == 0) {
+            store_solution();
+            chosen_solution = solutions + 1;
+        }
+        solutions++;
+        return;
+    }
+    for (int i = 0; i < N; i++) {
+        if (isSafe(i, col)) {
+            board[i][col] = 1;
+            solve_and_store(col + 1);
+            board[i][col] = 0;
+        }
+    }
+}
+
+void print_solution() {
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (stored_solution[i][j])
                 printf("♛ ");
             else
                 printf("_ ");
@@ -62,12 +76,14 @@ void print_board() {
     }
 }
 
-
-
 int main(int argc, char **argv) {
     srand(time(NULL));
-    solve(0);
-    print_board();
+    memset(board, 0, sizeof(board));
+    solve_and_store(0);
+    printf("To verify the board go to www.datagenetics.com/blog/august42012/index.html\n");
+    printf("There are %d solutions to the 8 Queens Problem on this %dx%d board.\n", solutions, N, N);
+    printf("This is Solution #%d:\n", chosen_solution);
+    print_solution();
     return 0;
 }
 
