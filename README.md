@@ -3,7 +3,7 @@ This program solves the famous 8-Queens Problem and will print a random solution
 The 8-Queens Problem is a classic chess problem where the main goal is to place eight queens on a standard 8x8 chessboard in a way that no queen threatenes 
 another. This means that no two queens can be on the same row, column, or diagonal. 
 It uses a backtracking algorithm to place the queens on the board and will check that no other queen is in the same row or diagonal. 
-The code solves and stores all possible solutions to the problem by calling the 'solve_and_store()' function. It then randomly chooses one of the solutions by creating a random number and then compares itself to the total number of solution. 
+The code solves and stores all possible solutions to the problem by calling the ```'solve_and_store()'``` function. It then randomly chooses one of the solutions by creating a random number and then compares itself to the total number of solution. 
 The program then prints out one random solution out of the 92 solutions. 
 
 To verify the printed board use the following website: http://www.datagenetics.com/blog/august42012/index.html
