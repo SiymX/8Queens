@@ -1,3 +1,5 @@
+#include <cairo.h>
+#include <cairo-pdf.h>
 #include <stdio.h>
 #include <stdlib.h>
 #include <time.h>
@@ -76,6 +78,78 @@ void print_solution() {
     }
 }
 
+
+void draw_board(cairo_t *cr) {
+    int square_size = 50;
+    int text_margin = 20;
+
+    
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if ((i + j) % 2 == 0) {
+                cairo_set_source_rgb(cr, 0.5, 0.5, 0.5);
+            } else {
+                cairo_set_source_rgb(cr, 1, 1, 1); 
+            }
+            cairo_rectangle(cr, j * square_size, i * square_size, square_size, square_size);
+            cairo_fill(cr);
+        }
+    }
+
+    
+    cairo_set_source_rgb(cr, 1, 0, 0); 
+    cairo_set_font_size(cr, square_size);
+
+    for (int i = 0; i < N; i++) {
+        for (int j = 0; j < N; j++) {
+            if (stored_solution[i][j]) {
+                cairo_rectangle(cr, j * square_size, i * square_size, square_size, square_size);
+                cairo_fill(cr);
+            }
+        }
+    }
+    
+    cairo_set_source_rgb(cr, 0, 0, 0);
+    cairo_select_font_face(cr, "Arial", CAIRO_FONT_SLANT_NORMAL, CAIRO_FONT_WEIGHT_BOLD);
+    cairo_set_font_size(cr, 16);
+
+    
+    cairo_set_source_rgb(cr, 0.53, 0.81, 0.92);
+    cairo_rectangle(cr, 0, N * square_size, N * square_size, text_margin * 2);
+    cairo_fill(cr);
+
+    
+    cairo_set_source_rgb(cr, 0, 0, 0);
+    char text[100];
+    snprintf(text, sizeof(text), "8-Queens Solution #%d", chosen_solution);
+    cairo_move_to(cr, 10, N * square_size + text_margin);
+    cairo_show_text(cr, text);
+
+    snprintf(text, sizeof(text), "Program created by Khandakar Sayeem");
+    cairo_move_to(cr, 10, N * square_size + text_margin * 1.7);
+    cairo_show_text(cr, text);
+    
+}
+
+
+void save_solution_to_png() {
+    int img_width = 50 * N;
+    int img_height = 50 * N + 40; 
+
+    cairo_surface_t *surface = cairo_image_surface_create(CAIRO_FORMAT_ARGB32, img_width, img_height);
+    cairo_t *cr = cairo_create(surface);
+
+    draw_board(cr);
+
+    cairo_surface_write_to_png(surface, "solution.png");
+
+    cairo_destroy(cr);
+    cairo_surface_destroy(surface);
+}
+
+
+
+
 int main(int argc, char **argv) {
     srand(time(NULL));
     memset(board, 0, sizeof(board));
@@ -84,6 +158,7 @@ int main(int argc, char **argv) {
     printf("There are %d solutions to the 8 Queens Problem on this %dx%d board.\n", solutions, N, N);
     printf("This is Solution #%d:\n", chosen_solution);
     print_solution();
+    save_solution_to_png();
+    printf("The solution has been saved as 'solution.png' to your desktop.\n");
     return 0;
 }
-
