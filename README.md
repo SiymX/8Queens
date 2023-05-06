@@ -9,20 +9,27 @@ The program then prints out one random solution out of the 92 solutions and gene
 you to view. To verify the printed board use the following website: http://www.datagenetics.com/blog/august42012/index.html
 
 # Test cases
-
-
 ![Screenshot 2023-05-05 165535_1](https://user-images.githubusercontent.com/63435885/236588783-89ac5a02-eb4e-4095-9499-6cfe9124b328.png)
 
 ![solution](https://user-images.githubusercontent.com/63435885/236588847-c045606c-65ad-45b1-9525-1955b5495ec5.png)
 
 
+# Installation
+This program might ask you to install some librarires so if it does just run the following command:
+```
+sudo apt-get install libcairo2-dev libcairo-gobject2
+```
 
+To see if it is installed:
+```
+dpkg -l | grep -E 'libcairo2-dev|libcairo-gobject2'
+```
 
 
 # Compilation
 Make sure you are running it on a working version of ubuntu. To compile it run this command on terminal:
 ```
-gcc queens.c -o queens
+gcc -o queens queens.c $(pkg-config --cflags --libs cairo)
 ```
 
 If everything is done correctly then it will compile and you can run the program using:
