@@ -1,3 +1,6 @@
+![8queensGIT](https://github.com/SiymX/8Queens/assets/63435885/672c5d54-2760-4806-9ef8-7161a8308a58)
+
+
 # 8-Queens Problem
 This program solves the famous 8-Queens Problem and will print a random solution out of the total 92 solutions on an 8x8 formatted chessboard. 
 The 8-Queens Problem is a classic chess problem where the main goal is to place eight queens on a standard 8x8 chessboard in a way that no queen threatenes 
